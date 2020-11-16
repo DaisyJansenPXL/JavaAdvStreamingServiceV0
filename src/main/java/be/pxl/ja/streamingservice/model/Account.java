@@ -12,8 +12,6 @@ public class Account {
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
-        this.streamingPlan = streamingPlan;
-        this.paymentInfo = paymentInfo;
         Profile profile = new Profile("profile1");
     }
 
