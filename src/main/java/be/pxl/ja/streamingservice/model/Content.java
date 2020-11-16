@@ -3,7 +3,7 @@ package be.pxl.ja.streamingservice.model;
 public abstract class Content {
     private String title;
     private Rating maturityRating;
-    private String imageURL;
+    private String imageUrl;
 
     public Content(String title, Rating maturityRating) {
         this.title = title;
@@ -18,12 +18,12 @@ public abstract class Content {
         return title;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     @Override
