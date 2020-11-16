@@ -1,18 +1,20 @@
 package be.pxl.ja.streamingservice.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
     private String email;
     private String password;
     private StreamingPlan streamingPlan;
-    private List<Profile> profiles;
+    private List<Profile> profiles = new ArrayList<>();
     private PaymentInfo paymentInfo;
 
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
         Profile profile = new Profile("profile1");
+        this.addProfile(profile);
     }
 
     public void setStreamingPlan(StreamingPlan streamingPlan) {
@@ -20,7 +22,7 @@ public class Account {
     }
 
     public void addProfile(Profile profile) {
-        profiles.add(profile);
+        this.profiles.add(profile);
     }
 
     public String getEmail() {
@@ -32,7 +34,7 @@ public class Account {
     }
 
     public boolean verifyPassword(String password) {
-        return true;
+        return false;
     }
 
     public void setPaymentInfo(PaymentInfo paymentInfo) {

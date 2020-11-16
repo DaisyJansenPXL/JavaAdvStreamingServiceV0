@@ -34,6 +34,14 @@ public class ProfileAllowedToWatchTest {
     }
 
     @Test
+    public void returnsFalseWhenNoDateOfBirthIsSet() {
+        assertFalse(littleKid.allowedToWatch(movieLittleKids));
+        assertFalse(olderKid.allowedToWatch(movieOlderKids));
+        assertFalse(teen.allowedToWatch(movieTeens));
+        assertFalse(mature.allowedToWatch(movieMature));
+    }
+
+    @Test
     public void returnsTrueWhenOldEnoughToWatch() {
         littleKid.setDateOfBirth(LocalDate.of(LocalDate.now().getYear() - 1, 1, 1));
         olderKid.setDateOfBirth(LocalDate.of(LocalDate.now().getYear() - 8, 1, 1));
@@ -54,14 +62,6 @@ public class ProfileAllowedToWatchTest {
         teen.setDateOfBirth(LocalDate.of(LocalDate.now().getYear() - 11, 1, 1));
         mature.setDateOfBirth(LocalDate.of(LocalDate.now().getYear() - 15, 1, 1));
 
-        assertFalse(littleKid.allowedToWatch(movieLittleKids));
-        assertFalse(olderKid.allowedToWatch(movieOlderKids));
-        assertFalse(teen.allowedToWatch(movieTeens));
-        assertFalse(mature.allowedToWatch(movieMature));
-    }
-
-    @Test
-    public void returnsFalseWhenNoDateOfBirthIsSet() {
         assertFalse(littleKid.allowedToWatch(movieLittleKids));
         assertFalse(olderKid.allowedToWatch(movieOlderKids));
         assertFalse(teen.allowedToWatch(movieTeens));
