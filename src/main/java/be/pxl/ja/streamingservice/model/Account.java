@@ -1,5 +1,8 @@
 package be.pxl.ja.streamingservice.model;
 
+import be.pxl.ja.streamingservice.util.PasswordUtil;
+
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +37,11 @@ public class Account {
     }
 
     public boolean verifyPassword(String password) {
-        return false;
+        return PasswordUtil.isValid(password, this.password);
+    }
+
+    public void setPassword(String password) {
+        this.password = PasswordUtil.encodePassword(password);
     }
 
     public void setPaymentInfo(PaymentInfo paymentInfo) {

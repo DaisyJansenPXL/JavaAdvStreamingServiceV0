@@ -25,6 +25,9 @@ public class Profile {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
+        if (dateOfBirth.isAfter(LocalDate.now())) {
+            throw new InvalidDateException(dateOfBirth, "Date of birth", "Must be before date of today");
+        }
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -40,4 +43,6 @@ public class Profile {
         }
         return false;
     }
+
+
 }
