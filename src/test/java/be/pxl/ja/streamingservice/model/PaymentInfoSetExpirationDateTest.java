@@ -18,8 +18,7 @@ public class PaymentInfoSetExpirationDateTest {
     }
 
     @Test
-    public void
-    throwsInvalidDateExceptionWhenExpirationDayWithinOneMonth() {
+    public void throwsInvalidDateExceptionWhenExpirationDayWithinOneMonth() {
         LocalDate withinOneMonth = LocalDate.now().plusMonths(1).minusDays(1);
         assertThrows(InvalidDateException.class , () -> paymentInfo.setExpirationDate(withinOneMonth));
     }
