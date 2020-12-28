@@ -1,12 +1,14 @@
 package be.pxl.ja.streamingservice.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Profile {
+public class Profile implements Comparable<Profile> {
 
     private String name;
     private LocalDate dateOfBirth;
@@ -31,15 +33,16 @@ public class Profile {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         if (dateOfBirth.isAfter(LocalDate.now())) {
-            throw new InvalidDateException(dateOfBirth, "Date of birth", "Must be before date of today");
+            throw new InvalidDateException(dateOfBirth, "Date of birth", "No date of birth in future allowed.");
         }
         this.dateOfBirth = dateOfBirth;
     }
 
     public int getAge() {
-        LocalDate date = LocalDate.now();
-
-        return Period.between(dateOfBirth, date).getYears();
+        if (dateOfBirth == null) {
+            return 0;
+        }
+        return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDateTime.now());
     }
 
     public List<Content> getRecentlyWatched() {
@@ -74,5 +77,36 @@ public class Profile {
                 }
             }
         }
+    }
+
+
+    @Override
+    public int compareTo(Profile other) {
+        return this.name.compareTo(other.name);
+    }
+
+
+    /*@Override
+    public int compareTo(Profile other) { // natural sorting based on age instead of name
+    return getAge() - other.getAge();*/
+
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Profile profile = (Profile) o;
+
+        return getName() != null ? getName().equals(profile.getName()) : profile.getName() == null;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" + "name='" + name + "' ,age=" + getAge() + '}';
     }
 }
